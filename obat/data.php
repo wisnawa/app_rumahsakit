@@ -109,10 +109,12 @@
                 $jml_hal = ceil($jml / $batas);
                 for ($i = 1; $i <= $jml_hal; $i++) {
                     if ($i != $hal) {
-                        echo "<li><a href=\"?hal=$i\">$i</a></li>";
+                        echo "<li class=\"page-item\" ><a class=\"page-link\" href=\"?hal=$i\">$i</a></li>";
                     } else { ?>
-                        <!-- echo "<li class=\"active\">$i</li>"; -->
-                        <span class="badge text-bg-primary"><?= $i; ?></span>
+                        <!-- <span class="badge text-bg-primary"><?= $i; ?></span> -->
+                        <li class="page-item active">
+                            <span class="page-link"><?= $i; ?></span>
+                        </li>
                 <?php }
                 }
                 ?>
