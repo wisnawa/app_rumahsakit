@@ -27,8 +27,8 @@
             <!-- button process end -->
         </div>
     </div>
-</div>
-<div class="container">
+    <!-- </div>
+<div class="container"> -->
     <div class="table-responsive-sm">
         <table class="table table-striped table-hover">
             <caption>List Obat</caption>
@@ -37,12 +37,12 @@
                     <th>No.</th>
                     <th>Nama Obat</th>
                     <th>Keterangan</th>
-                    <th><i class="fa-solid fa-gears"></i></th>
+                    <th colspan="2" class="text-center"><i class="fa-solid fa-gears"></i></th>
                 </tr>
             </thead>
             <tbody>
                 <?php
-                $batas = 5;
+                $batas = 3;
                 $hal = @$_GET['hal'];
                 if (empty($hal)) {
                     $posisi = 0;
@@ -74,7 +74,12 @@
                             <td><?= $no++; ?></td>
                             <td><?= $data['nama_obat']; ?></td>
                             <td><?= $data['ket_obat']; ?></td>
-                            <td></td>
+                            <td style="text-align: center; width: 100px;">
+                                <a href="edit.php?id=<?= $data['id_obat']; ?>" class="btn btn-sm btn-outline-warning"><i class="fa-regular fa-pen-to-square"></i>&nbsp;Edit</a>
+                            </td>
+                            <td style="text-align: center; width: 100px;">
+                                <a href="del.php?id=<?= $data['id_obat']; ?>" class="btn btn-sm btn-outline-danger"><i class="fa-regular fa-trash-can"></i>&nbsp;Delete</a>
+                            </td>
                         </tr>
                         <tr>
                         <?php }
@@ -86,11 +91,40 @@
                             </div>
                         </td>
                     <?php } ?>
-
                         </tr>
-
             </tbody>
         </table>
     </div>
+    <?php
+    if (isset($_POST['pencarian']) == '') { ?>
+        <div style="float: left;">
+            <?php
+            $jml = mysqli_num_rows(mysqli_query($con, $queryJml));
+            echo "Jumlah Data: <b>$jml</b>";
+            ?>
+        </div>
+        <div style="float: right;">
+            <ul class="pagination pagination-sm" style="margin: 0;">
+                <?php
+                $jml_hal = ceil($jml / $batas);
+                for ($i = 1; $i <= $jml_hal; $i++) {
+                    if ($i != $hal) {
+                        echo "<li><a href=\"?hal=$i\">$i</a></li>";
+                    } else { ?>
+                        <!-- echo "<li class=\"active\">$i</li>"; -->
+                        <span class="badge text-bg-primary"><?= $i; ?></span>
+                <?php }
+                }
+                ?>
+            </ul>
+        </div>
+    <?php
+
+    } else {
+        echo "<div style=\"float: left;\">";
+        $jml = mysqli_num_rows(mysqli_query($con, $queryJml));
+        echo "Data Hasil Pencarian: <b>$jml</b>";
+        echo "</div>";
+    } ?>
 </div>
 <?php include_once('../_footer.php') ?>
