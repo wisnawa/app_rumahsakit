@@ -27,8 +27,8 @@
             <!-- button process end -->
         </div>
     </div>
-    <!-- </div>
-<div class="container"> -->
+</div>
+<div class="container">
     <div class="table-responsive-sm">
         <table class="table table-striped table-hover">
             <caption>List Obat</caption>
@@ -96,7 +96,7 @@
         </table>
     </div>
     <?php
-    if (isset($_POST['pencarian']) == '') { ?>
+    if (isset($_POST['pencarian']) == null) { ?>
         <div style="float: left;">
             <?php
             $jml = mysqli_num_rows(mysqli_query($con, $queryJml));
