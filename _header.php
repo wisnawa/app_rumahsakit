@@ -1,5 +1,8 @@
 <?php
 require_once "_config/config.php";
+// load UUID files
+require "assets/libs/vendor/autoload.php";
+// 
 if (!isset($_SESSION['user'])) {
     echo "<script>window.location='" . base_url('auth/login') . "'</script>";
 }; ?>
