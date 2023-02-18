@@ -17,7 +17,7 @@ include_once('../_header.php');
     <div class="row">
         <div class="col-lg-12">
             <a href="#menu-toggle" class="btn btn-primary" id="menu-toggle">Toggle Menu</a>
-            <h1>Obat</h1>
+            <h1>Penambahan Data Obat</h1>
             <p>Selamat Datang <span style="font-weight: bold; text-transform: capitalize;"><?= $_SESSION['user']; ?></span> Pengguna Rekam Medis</p>
         </div>
     </div>
