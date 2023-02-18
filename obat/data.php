@@ -111,10 +111,9 @@
                     if ($i != $hal) {
                         echo "<li class=\"page-item\" ><a class=\"page-link\" href=\"?hal=$i\">$i</a></li>";
                     } else { ?>
-                        <!-- <span class="badge text-bg-primary"><?= $i; ?></span> -->
-                        <li class="page-item active">
+                        <!-- <li class="page-item active">
                             <span class="page-link"><?= $i; ?></span>
-                        </li>
+                        </li> -->
                 <?php }
                 }
                 ?>
