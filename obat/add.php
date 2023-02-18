@@ -1,11 +1,11 @@
 <?php
 include_once('../_header.php');
 // kita menggunakan UUID version 4
-use Ramsey\Uuid\Uuid;
+// use Ramsey\Uuid\Uuid;
 
-$uuid = Uuid::uuid4();
-echo $uuid->toString();
-echo "<br>";
+// $uuid = Uuid::uuid4();
+// echo $uuid->toString();
+// echo "<br>";
 // jagan pergunakan code dibawah ini tidak diperlukan lagi
 // printf(
 //     "UUID: %s\nVersion: %d\n",
@@ -26,7 +26,7 @@ echo "<br>";
     <div class="row">
         <div class="col">
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                <a href="data.php" class="btn btn-outline-info"><i class="fa-solid fa-backward"></i></a>
+                <a href="data.php" class="btn btn-outline-info"><i class="fa-solid fa-backward"></i>&nbsp;Kembali</a>
             </div>
         </div>
     </div>
@@ -42,10 +42,12 @@ echo "<br>";
                 </div>
                 <div class="mb-3">
                     <label for="ket_obat" class="form-label fw-bold">Keterangan:</label>
-                    <textarea name="" id="ket_obat" class="form-control" rows="3"></textarea>
+                    <textarea name="ket" id="ket_obat" class="form-control" rows="3" required></textarea>
                     <div id="nameHelp" class="form-text text-danger">* Harus diisi</div>
                 </div>
-                <button type="submit" class="btn btn-outline-success"><i class="fa-regular fa-paper-plane"></i>&nbsp;Submit Data</button>
+                <div class="d-grid justify-content-end">
+                    <button type="submit" name="add" class="btn btn-sm btn-outline-success"><i class="fa-regular fa-paper-plane"></i>&nbsp;Kirim Data</button>
+                </div>
             </form>
         </div>
     </div>

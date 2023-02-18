@@ -78,7 +78,7 @@
                                 <a href="edit.php?id=<?= $data['id_obat']; ?>" class="btn btn-sm btn-outline-warning"><i class="fa-regular fa-pen-to-square"></i>&nbsp;Edit</a>
                             </td>
                             <td style="text-align: center; width: 100px;">
-                                <a href="del.php?id=<?= $data['id_obat']; ?>" class="btn btn-sm btn-outline-danger"><i class="fa-regular fa-trash-can"></i>&nbsp;Delete</a>
+                                <a href="del.php?id=<?= $data['id_obat']; ?>" class="btn btn-sm btn-outline-danger" onclick="confirm('Yakin dihapus?')"><i class="fa-regular fa-trash-can"></i>&nbsp;Delete</a>
                             </td>
                         </tr>
                         <tr>
