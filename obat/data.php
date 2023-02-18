@@ -114,8 +114,8 @@
                         <li class="page-item active">
                             <span class="page-link"><?= $i; ?></span>
                         </li>
-                <?php }
-                }
+                <?php };
+                };
                 ?>
             </ul>
         </div>
