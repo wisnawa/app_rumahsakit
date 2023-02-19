@@ -22,7 +22,7 @@
             <!-- button process start -->
             <div class="d-grid gap-3 d-md-flex justify-content-md-end mb-2">
                 <a href="#" class="btn btn-sm btn-outline-warning" type="reset"><i class="fa-solid fa-arrows-rotate"></i>&nbsp;Refresh Data</a>
-                <a href="add.php" class="btn btn-sm btn-outline-success"><i class="fa-regular fa-paper-plane"></i>&nbsp;Tambah Data Obat</a>
+                <a href="add.php" class="btn btn-sm btn-outline-success"><i class="fa-solid fa-circle-plus"></i>&nbsp;Tambah Data Obat</a>
             </div>
             <!-- button process end -->
         </div>

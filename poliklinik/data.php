@@ -22,65 +22,107 @@
             <!-- button process start -->
             <div class="d-grid gap-3 d-md-flex justify-content-md-end mb-2">
                 <a href="#" class="btn btn-sm btn-outline-warning" type="reset"><i class="fa-solid fa-arrows-rotate"></i>&nbsp;Refresh Data</a>
-                <a href="add.php" class="btn btn-sm btn-outline-success"><i class="fa-regular fa-paper-plane"></i>&nbsp;Tambah Data Poliklinik</a>
+                <a href="generate.php" class="btn btn-sm btn-outline-success"><i class="fa-solid fa-circle-plus"></i>&nbsp;Tambah Data Poliklinik</a>
             </div>
             <!-- button process end -->
         </div>
     </div>
 </div>
 <div class="container">
-    <div class="table-responsive-sm">
-        <table class="table table-striped table-hover">
-            <caption>List Poliklinik</caption>
-            <thead class="table-primary">
-                <tr>
-                    <th>No.</th>
-                    <th>Nama Poliklinik</th>
-                    <th>Area Gedung</th>
-                    <th colspan="2" class="">
-                        <!-- <div class="container"> -->
-                        <!-- <div class="row align-items-center"> -->
-                        <!-- <div class="col"> -->
-                        <div class="form-check">
-                            <input name="select_all" class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault"></label>
-                        </div>
-                        <!-- </div> -->
-                        <!-- </div> -->
-                        <!-- </div> -->
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                $no = 1;
-                $sql_poli = mysqli_query($con, "SELECT * FROM `tb_poliklinik`") or die(mysqli_error($con));
-                if (mysqli_num_rows($sql_poli) > 0) {
-                    while ($data = mysqli_fetch_array($sql_poli)) { ?>
+    <form action="" method="post" name="proses">
+        <div class="table-responsive-sm">
+            <table class="table table-striped table-hover">
+                <thead class="table-primary">
+                    <tr>
+                        <th class="align-middle">No.</th>
+                        <th class="align-middle">Nama Poliklinik</th>
+                        <th class="align-middle">Area Gedung</th>
+                        <th colspan="2">
+                            <!-- <div class="form-check">
+                            <input style="float: left; margin-left: 40%" class="form-check-input" type="checkbox" id="select_all">
+                            <label class="form-check-label" for="select_all"></label>
+                        </div> -->
+                            <div style="float: left; margin-left: 50%">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" onclick="selectAll()" type="radio" name="radio_check" id="flexRadioDefault1">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        Select All
+                                    </label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" onclick="deselectAll()" type="radio" name="radio_check" id="flexRadioDefault2" checked>
+                                    <label class="form-check-label" for="flexRadioDefault2">
+                                        Clear
+                                    </label>
+                                </div>
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    $no = 1;
+                    $sql_poli = mysqli_query($con, "SELECT * FROM `tb_poliklinik`") or die(mysqli_error($con));
+                    if (mysqli_num_rows($sql_poli) > 0) {
+                        while ($data = mysqli_fetch_array($sql_poli)) { ?>
+                            <tr>
+                                <td><?= $no++; ?></td>
+                                <td><?= $data['nama_poli']; ?></td>
+                                <td><?= $data['gedung']; ?></td>
+                                <td>
+                                    <div class="form-check">
+                                        <input style="float: left; margin-left: 70%" name="checked[]" class="form-check-input" type="checkbox" value="<?= $data['id_poli']; ?>" id="cityCheck">
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php }
+                    } else { ?>
                         <tr>
-                            <td><?= $no++; ?></td>
-                            <td><?= $data['nama_poli']; ?></td>
-                            <td><?= $data['gedung']; ?></td>
-                            <td style="text-align: center; width: 100px;">
-                                <a href="edit.php?id=<?= $data['id_poli']; ?>" class="btn btn-sm btn-outline-warning"><i class="fa-regular fa-pen-to-square"></i>&nbsp;Edit</a>
-                            </td>
-                            <td style="text-align: center; width: 100px;">
-                                <a href="del.php?id=<?= $data['id_poli']; ?>" class="btn btn-sm btn-outline-danger" onclick="confirm('Yakin dihapus?')"><i class="fa-regular fa-trash-can"></i>&nbsp;Delete</a>
+                            <td colspan="4">
+                                <div class="alert alert-danger d-flex align-items-center" role="alert">
+                                    <i class="fa-solid fa-circle-exclamation"></i>&nbsp;
+                                    <div class="text-uppercase fs-6 fw-bold">Data tidak ditemukan</div>
+                                </div>
                             </td>
                         </tr>
-                    <?php }
-                } else { ?>
-                    <tr>
-                        <td colspan="4">
-                            <div class="alert alert-danger d-flex align-items-center" role="alert">
-                                <i class="fa-solid fa-circle-exclamation"></i>&nbsp;
-                                <div class="text-uppercase fs-6 fw-bold">Data tidak ditemukan</div>
-                            </div>
-                        </td>
-                    </tr>
-                <?php } ?>
-            </tbody>
-        </table>
+                    <?php } ?>
+                </tbody>
+            </table>
+        </div>
+    </form>
+    <div class="d-grid d-md-flex gap-3 justify-content-md-end">
+        <button class="btn btn-sm btn-outline-warning" onclick="edit()"><i class="fa-regular fa-pen-to-square"></i>&nbsp;Edit</button>
+        <button class="btn btn-sm btn-outline-danger" onclick="hapus()"><i class="fa-regular fa-trash-can"></i>&nbsp;Hapus Data</button>
     </div>
 </div>
+<script>
+    function selectAll() {
+        let poliCheck = document.getElementsByName("checked[]");
+        let poliCheckLen = poliCheck.length;
+        for (var x = 0; x < poliCheckLen; x++) {
+            poliCheck[x].checked = true;
+        }
+    }
+
+    function deselectAll() {
+        let poliCheck = document.getElementsByName("checked[]");
+        let poliCheckLen = poliCheck.length;
+        for (var x = 0; x < poliCheckLen; x++) {
+            poliCheck[x].checked = false;
+        }
+    }
+    // for buttom edit and delete
+    function edit() {
+        document.proses.action = "edit.php";
+        document.proses.submit();
+    }
+
+    function hapus() {
+        var conf = confirm("Apakah hapus data?");
+        if (conf) {
+            document.proses.action = "del.php";
+            document.proses.submit();
+        }
+    }
+</script>
 <?php include_once('../_footer.php') ?>
