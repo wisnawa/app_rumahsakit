@@ -13,6 +13,13 @@ if (isset($_SESSION['user'])) {
         <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" /> -->
         <link rel="stylesheet" href="<?= base_url(); ?>/assets/css/bootstrap.min.css">
         <link rel="stylesheet" href="<?= base_url(); ?>/assets/fontawesome-6.2.1/css/all.min.css">
+        <style>
+            img {
+                width: 130px;
+                height: 130px;
+                margin-bottom: 4px;
+            }
+        </style>
         <!-- <link rel="stylesheet" href="../assets/css/style.css" /> -->
         <title>Login - Rumah Sakit</title>
     </head>
@@ -40,7 +47,11 @@ if (isset($_SESSION['user'])) {
             } ?>
             <form action="" method="post">
                 <div class="row justify-content-center">
-                    <div class="col-5">
+                    <div class="col-sm-5">
+                        <picture>
+                            <source srcset="<?= base_url(); ?>/assets/logo/Low_Resolution_Logo-ITS.svg" type="image/svg+xml">
+                            <img src="<?= base_url(); ?>/assets/logo/Low_Resolution_Logo-ITS.svg" class="img-fluid mx-auto d-block" alt="LOGO">
+                        </picture>
                         <div class="input-group flex-nowrap input-group-sm">
                             <span class="input-group-text" id="user_name"><i class="fa-solid fa-user"></i></span>
                             <input type="text" name="user" class="form-control" placeholder="user name" aria-label="Username" aria-describedby="user_name" autocomplete="off" required autofocus>
@@ -48,7 +59,7 @@ if (isset($_SESSION['user'])) {
                     </div>
                 </div>
                 <div class="row justify-content-center">
-                    <div class="col-5">
+                    <div class="col-sm-5">
                         <div class="input-group flex-nowrap input-group-sm mt-3">
                             <span class="input-group-text" id="password"><i class="fa-solid fa-unlock"></i></span>
                             <input type="password" name="pass" class="form-control" placeholder="input password" aria-label="Username" aria-describedby="password" required>
@@ -57,7 +68,7 @@ if (isset($_SESSION['user'])) {
                 </div>
                 <!-- button process start -->
                 <div class="row justify-content-center mt-2">
-                    <div class="col-5 d-grid">
+                    <div class="col-sm-5 d-grid">
                         <input type="submit" value="Login" name="login" class="btn btn-outline-success btn-sm">
                     </div>
                 </div>
