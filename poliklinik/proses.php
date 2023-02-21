@@ -28,4 +28,11 @@ if (isset($_POST['add'])) {
         echo "<script>alert('Gagal tambah data, coba lagi!'); window.location='generate.php';</script>";
     }
 } elseif (isset($_POST['edit'])) {
+    for ($i = 0; $i < count($_POST['id']); $i++) {
+        $id = $_POST['id'][$i];
+        $nama = $_POST['nama'][$i];
+        $gedung = $_POST['gedung'][$i];
+        mysqli_query($con, "UPDATE `tb_poliklinik` SET `nama_poli` = '$nama', `gedung` = '$gedung' WHERE `id_poli` = '$id'") or die(mysqli_error($con));
+    }
+    echo "<script>alert('Data Berhasil Di Tambahkan!'); window.location='data.php';</script>";
 }

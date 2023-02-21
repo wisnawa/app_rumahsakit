@@ -43,7 +43,7 @@
             </thead>
             <tbody>
                 <?php
-                $batas = 3;
+                $batas = 5;
                 $hal = @$_GET['hal'];
                 if (empty($hal)) {
                     $posisi = 0;
@@ -64,7 +64,7 @@
                         $no = $posisi + 1;
                     }
                 } else {
-                    $query = "SELECT * FROM tb_obat LIMIT $posisi, $batas";
+                    $query = "SELECT * FROM tb_obat ORDER BY `nama_obat` ASC LIMIT $posisi, $batas";
                     $queryJml = "SELECT * FROM tb_obat";
                     $no = $posisi + 1;
                 };
