@@ -21,7 +21,7 @@
         <div class="col-6">
             <!-- button process start -->
             <div class="d-grid gap-3 d-md-flex justify-content-md-end mb-2">
-                <a href="#" class="btn btn-sm btn-outline-warning" type="reset"><i class="fa-solid fa-arrows-rotate"></i>&nbsp;Refresh Data</a>
+                <button id="btnRefresh" class="btn btn-sm btn-outline-warning"><i class="fa-solid fa-arrows-rotate"></i>&nbsp;Refresh</button>
                 <a href="generate.php" class="btn btn-sm btn-outline-success"><i class="fa-solid fa-circle-plus"></i>&nbsp;Tambah Data Poliklinik</a>
             </div>
             <!-- button process end -->
@@ -91,11 +91,12 @@
         </div>
     </form>
     <div class="d-grid d-md-flex gap-3 justify-content-md-end">
-        <button class="btn btn-sm btn-outline-warning" onclick="edit()"><i class="fa-regular fa-pen-to-square"></i>&nbsp;Edit</button>
-        <button class="btn btn-sm btn-outline-danger" onclick="hapus()"><i class="fa-regular fa-trash-can"></i>&nbsp;Hapus Data</button>
+        <button class="btn btn-sm btn-outline-warning" id="btnEdit"><i class="fa-regular fa-pen-to-square"></i>&nbsp;Edit</button>
+        <button class="btn btn-sm btn-outline-danger" id="btnDelete"><i class=" fa-regular fa-trash-can"></i>&nbsp;Hapus Data</button>
     </div>
 </div>
 <script>
+    // function for event onclick in button
     function selectAll() {
         let poliCheck = document.getElementsByName("checked[]");
         let poliCheckLen = poliCheck.length;
@@ -111,18 +112,32 @@
             poliCheck[x].checked = false;
         }
     }
-    // for buttom edit and delete
-    function edit() {
+    // function for buttom edit
+    var btnEdit = document.getElementById("btnEdit");
+
+    function prosesEdit() {
         document.proses.action = "edit.php";
         document.proses.submit();
     }
+    btnEdit.addEventListener("click", prosesEdit)
 
-    function hapus() {
+    // function for button delete
+    var btnDelete = document.getElementById("btnDelete");
+
+    function prosesDel() {
         var conf = confirm("Apakah hapus data?");
         if (conf) {
             document.proses.action = "del.php";
             document.proses.submit();
         }
     }
+    btnDelete.addEventListener("click", prosesDel);
+    // function button refresh for event click
+    var btnRefresh = document.getElementById("btnRefresh");
+
+    function jalankan() {
+        window.location = "data.php";
+    }
+    btnRefresh.addEventListener("click", jalankan);
 </script>
 <?php include_once('../_footer.php') ?>

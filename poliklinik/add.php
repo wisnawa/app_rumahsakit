@@ -5,7 +5,7 @@
             <div class="d-grid gap-2 d-md-block">
                 <a href="#menu-toggle" class="btn btn-primary" id="menu-toggle"><i class="fa-solid fa-bars"></i>&nbsp;Toggle Menu</a>
                 <a href="data.php" class="btn btn-outline-info"><i class="fa-solid fa-backward"></i>&nbsp;Kembali</a>
-                <a href="generate.php" class="btn btn-outline-info"><i class="fa-solid fa-backward"></i>&nbsp;Tambah Data Lagi</a>
+                <a href="generate.php" class="btn btn-outline-success"><i class="fa-solid fa-circle-plus"></i>&nbsp;Tambah Data Lagi</a>
             </div>
             <h1>Tambah Data Poliklinik</h1>
             <p>Selamat Datang <span style="font-weight: bold; text-transform: capitalize;"><?= $_SESSION['user']; ?></span> Pengguna Rekam Medis</p>

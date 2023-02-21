@@ -9,11 +9,12 @@
     </div>
 </div>
 <div class="container">
+    <!-- function pencarian -->
     <div class="row">
         <div class="col-6">
             <form action="" method="post">
                 <div class="input-group mb-3">
-                    <input type="text" name="pencarian" class="form-control" placeholder="Pencarian" aria-label="Pencarian" aria-describedby="button-addon1">
+                    <input type="text" name="pencarian" class="form-control" placeholder="Pencarian" aria-label="Pencarian" aria-describedby="button-addon1" autofocus>
                     <button class="btn btn-outline-primary" type="submit" id="button-addon1"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </div>
             </form>
@@ -21,7 +22,7 @@
         <div class="col-6">
             <!-- button process start -->
             <div class="d-grid gap-3 d-md-flex justify-content-md-end mb-2">
-                <a href="#" class="btn btn-sm btn-outline-warning" type="reset"><i class="fa-solid fa-arrows-rotate"></i>&nbsp;Refresh Data</a>
+                <a href="data.php" class="btn btn-sm btn-outline-warning" type="reset"><i class="fa-solid fa-arrows-rotate"></i>&nbsp;Refresh Data</a>
                 <a href="add.php" class="btn btn-sm btn-outline-success"><i class="fa-solid fa-circle-plus"></i>&nbsp;Tambah Data Obat</a>
             </div>
             <!-- button process end -->
@@ -78,7 +79,7 @@
                                 <a href="edit.php?id=<?= $data['id_obat']; ?>" class="btn btn-sm btn-outline-warning"><i class="fa-regular fa-pen-to-square"></i>&nbsp;Edit</a>
                             </td>
                             <td style="text-align: center; width: 100px;">
-                                <a href="del.php?id=<?= $data['id_obat']; ?>" class="btn btn-sm btn-outline-danger" onclick="confirm('Yakin dihapus?')"><i class="fa-regular fa-trash-can"></i>&nbsp;Delete</a>
+                                <a href="del.php?id=<?= $data['id_obat']; ?>" class="btn btn-sm btn-outline-danger" onclick="return confirm('Yakin dihapus?')"><i class="fa-regular fa-trash-can"></i>&nbsp;Delete</a>
                             </td>
                         </tr>
                         <tr>

@@ -14,7 +14,7 @@
 <div class="container">
     <form action="add.php" method="post">
         <div class="row">
-            <div class="col-3">
+            <div class="col-sm-4">
                 <label for="count_add" class="form-label fw-semibold">Banyak recod yang akan ditambahkan:</label>
                 <div class="input-group">
                     <input type="text" name="count_add" class="form-control" placeholder="Generate" aria-label="Generate" aria-describedby="button-addon1" id="count_add" autofocus autocomplete="off" pattern="[0-9]+" required maxlength="3">
