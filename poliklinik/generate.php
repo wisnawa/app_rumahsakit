@@ -4,7 +4,9 @@
         <div class="col-lg-12">
             <div class="d-grid gap-2 d-md-block">
                 <a href="#menu-toggle" class="btn btn-primary" id="menu-toggle"><i class="fa-solid fa-bars"></i>&nbsp;Toggle Menu</a>
-                <a href="data.php" class="btn btn-outline-info"><i class="fa-solid fa-backward"></i>&nbsp;Kembali</a>
+                <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="Kembali ke data poliklinik">
+                    <a href="data.php" class="btn btn-outline-info"><i class="fa-solid fa-backward"></i>&nbsp;Kembali</a>
+                </span>
             </div>
             <h1>Generate Data Poliklinik</h1>
             <p>Selamat Datang <span style="font-weight: bold; text-transform: capitalize;"><?= $_SESSION['user']; ?></span> Pengguna Rekam Medis</p>
@@ -24,4 +26,10 @@
         </div>
     </form>
 </div>
+<script>
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+    tooltipTriggerList.forEach(t => {
+        new bootstrap.Tooltip(t);
+    })
+</script>
 <?php include_once('../_footer.php') ?>

@@ -15,10 +15,17 @@ use Ramsey\Uuid\Uuid;
 //     $uuid->getFields()->getVersion()
 // );
 if (isset($_POST['add'])) {
-    $uuid = Uuid::uuid4()->toString();
-    $nama = trim(mysqli_real_escape_string($con, $_POST['nama']));
-    $ket = trim(mysqli_real_escape_string($con, $_POST['ket']));
-    mysqli_query($con, "INSERT INTO tb_obat (`id_obat`, `nama_obat`, `ket_obat`) VALUES ('$uuid', '$nama', '$ket')") or die(mysqli_error($con));
-    echo "<script>window.location='data.php';</script>";
+    $total = $_POST['total'];
+    for ($i = 1; $i <= $total; $i++) {
+        $uuid = Uuid::uuid4()->toString();
+        $nama = trim(mysqli_real_escape_string($con, $_POST['nama-' . $i]));
+        $gedung = trim(mysqli_real_escape_string($con, $_POST['gedung-' . $i]));
+        $sql = mysqli_query($con, "INSERT INTO tb_poliklinik (`id_poli`, `nama_poli`, `gedung`) VALUES ('$uuid', '$nama', '$gedung')") or die(mysqli_error($con));
+    }
+    if ($sql) {
+        echo "<script>alert('" . $total . " data berhasil ditambahkan'); window.location='data.php';</script>";
+    } else {
+        echo "<script>alert('Gagal tambah data, coba lagi!'); window.location='generate.php';</script>";
+    }
 } elseif (isset($_POST['edit'])) {
 }

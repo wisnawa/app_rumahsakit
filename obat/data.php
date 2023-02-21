@@ -2,7 +2,7 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-12">
-            <a href="#menu-toggle" class="btn btn-primary" id="menu-toggle">Toggle Menu</a>
+            <a href="#menu-toggle" class="btn btn-primary" id="menu-toggle"><i class="fa-solid fa-bars"></i>&nbsp;Toggle Menu</a>
             <h1>Data Obat</h1>
             <p>Selamat Datang <span style="font-weight: bold; text-transform: capitalize;"><?= $_SESSION['user']; ?></span> Pengguna Rekam Medis</p>
         </div>

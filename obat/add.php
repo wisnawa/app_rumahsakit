@@ -26,7 +26,9 @@ include_once('../_header.php');
     <div class="row">
         <div class="col">
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                <a href="data.php" class="btn btn-outline-info"><i class="fa-solid fa-backward"></i>&nbsp;Kembali</a>
+                <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="Kembali ke data obat">
+                    <a href="data.php" class="btn btn-outline-info"><i class="fa-solid fa-backward"></i>&nbsp;Kembali</a>
+                </span>
             </div>
         </div>
     </div>
@@ -52,5 +54,10 @@ include_once('../_header.php');
         </div>
     </div>
 </div>
-
+<script>
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+    tooltipTriggerList.forEach(t => {
+        new bootstrap.Tooltip(t);
+    })
+</script>
 <?php include_once('../_footer.php') ?>

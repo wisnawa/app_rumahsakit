@@ -29,10 +29,10 @@
                         <tr>
                             <td><?= $i; ?></td>
                             <td>
-                                <input class="form-control form-control-sm" type="text" name="nama-<?= $i; ?>" placeholder="input nama poliklinik" aria-label="form-control-sm" autofocus>
+                                <input class="form-control form-control-sm" type="text" name="nama-<?= $i; ?>" placeholder="input nama poliklinik" aria-label="form-control-sm" required autofocus>
                             </td>
                             <td>
-                                <input class="form-control form-control-sm" type="text" name="gedung-<?= $i; ?>" placeholder="input nama gedung" aria-label="form-control-sm">
+                                <input class="form-control form-control-sm" type="text" name="gedung-<?= $i; ?>" placeholder="input nama gedung" aria-label="form-control-sm" required>
                             </td>
                         </tr>
                     </tbody>
