@@ -11,12 +11,12 @@
 <div class="container">
     <div class="row">
         <div class="col-6">
-            <!-- <form action="" method="post">
+            <form action="" method="post">
                 <div class="input-group mb-3">
                     <input type="text" name="pencarian" class="form-control" placeholder="Pencarian" aria-label="Pencarian" aria-describedby="button-addon1">
                     <button class="btn btn-outline-primary" type="submit" id="button-addon1"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </div>
-            </form> -->
+            </form>
         </div>
         <div class="col-6">
             <!-- button process start -->
@@ -64,8 +64,32 @@
                 </thead>
                 <tbody>
                     <?php
+                    $batas = 5;
+                    $hal = @$_GET['hal'];
+                    if (empty($hal)) {
+                        $posisi = 0;
+                        $hal = 1;
+                    } else {
+                        $posisi = ($hal - 1) * $batas;
+                    };
+                    if ($_SERVER['REQUEST_METHOD'] == "POST") {
+                        $pencarian = trim(mysqli_real_escape_string($con, $_POST['pencarian']));
+                        if ($pencarian != '') {
+                            $sql = "SELECT * FROM tb_dokter WHERE nama_dokter LIKE '%$pencarian%'";
+                            $query = $sql;
+                            $queryJml = $sql;
+                        } else {
+                            $query = "SELECT * FROM tb_dokter LIMIT $posisi, $batas";
+                            $queryJml = "SELECT * FROM tb_dokter";
+                            $no = $posisi + 1;
+                        }
+                    } else {
+                        $query = "SELECT * FROM `tb_dokter` ORDER BY `nama_dokter` ASC LIMIT $posisi, $batas";
+                        $queryJml = "SELECT * FROM tb_dokter";
+                        $no = $posisi + 1;
+                    };
                     $no = 1;
-                    $sql_dokter = mysqli_query($con, "SELECT * FROM `tb_dokter` ORDER BY `nama_dokter` ASC") or die(mysqli_error($con));
+                    $sql_dokter = mysqli_query($con, $query) or die(mysqli_error($con));
                     if (mysqli_num_rows($sql_dokter) > 0) {
                         while ($data = mysqli_fetch_array($sql_dokter)) { ?>
                             <tr>
@@ -98,6 +122,40 @@
             </table>
         </div>
     </form>
+    <?php
+    if (isset($_POST['pencarian']) == null) { ?>
+        <div style="float: left;">
+            <?php
+            $jml = mysqli_num_rows(mysqli_query($con, $queryJml));
+            echo "Jumlah Data: <b>$jml</b>";
+            ?>
+        </div>
+        <div style="float: right;">
+            <ul class="pagination pagination-sm" style="margin: 0;">
+                <?php
+                $jml_hal = ceil($jml / $batas);
+                for ($i = 1; $i <= $jml_hal; $i++) {
+                    if ($i != $hal) {
+                        echo "<li class=\"page-item\" ><a class=\"page-link\" href=\"?hal=$i\">$i</a></li>";
+                    } else { ?>
+                        <li class="page-item active">
+                            <span class="page-link"><?= $i; ?></span>
+                        </li>
+                <?php };
+                };
+                ?>
+            </ul>
+        </div>
+    <?php
+
+    } else {
+        echo "<div style=\"float: left;\">";
+        $jml = mysqli_num_rows(mysqli_query($con, $queryJml));
+        echo "Data Hasil Pencarian: <b>$jml</b>";
+        echo "</div>";
+    } ?>
+    <br>
+    <br>
     <div class="d-grid d-md-flex gap-3 justify-content-md-end">
         <!-- <button class="btn btn-sm btn-outline-warning" id="btnEdit"><i class="fa-regular fa-pen-to-square"></i>&nbsp;Edit</button> -->
         <button class="btn btn-sm btn-outline-danger" id="btnDelete"><i class=" fa-regular fa-trash-can"></i>&nbsp;Hapus Data</button>

@@ -11,12 +11,12 @@
 <div class="container">
     <div class="row">
         <div class="col-6">
-            <!-- <form action="" method="post">
+            <form action="" method="post">
                 <div class="input-group mb-3">
                     <input type="text" name="pencarian" class="form-control" placeholder="Pencarian" aria-label="Pencarian" aria-describedby="button-addon1">
                     <button class="btn btn-outline-primary" type="submit" id="button-addon1"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </div>
-            </form> -->
+            </form>
         </div>
         <div class="col-6">
             <!-- button process start -->
@@ -38,10 +38,6 @@
                         <th class="align-middle">Nama Poliklinik</th>
                         <th class="align-middle">Area Gedung</th>
                         <th colspan="2">
-                            <!-- <div class="form-check">
-                            <input style="float: left; margin-left: 40%" class="form-check-input" type="checkbox" id="select_all">
-                            <label class="form-check-label" for="select_all"></label>
-                        </div> -->
                             <div style="float: left; margin-left: 50%">
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" onclick="selectAll()" type="radio" name="radio_check" id="flexRadioDefault1">
@@ -61,8 +57,32 @@
                 </thead>
                 <tbody>
                     <?php
+                    $batas = 5;
+                    $hal = @$_GET['hal'];
+                    if (empty($hal)) {
+                        $posisi = 0;
+                        $hal = 1;
+                    } else {
+                        $posisi = ($hal - 1) * $batas;
+                    };
+                    if ($_SERVER['REQUEST_METHOD'] == "POST") {
+                        $pencarian = trim(mysqli_real_escape_string($con, $_POST['pencarian']));
+                        if ($pencarian != '') {
+                            $sql = "SELECT * FROM tb_poliklinik WHERE nama_poli LIKE '%$pencarian%'";
+                            $query = $sql;
+                            $queryJml = $sql;
+                        } else {
+                            $query = "SELECT * FROM tb_poliklinik LIMIT $posisi, $batas";
+                            $queryJml = "SELECT * FROM tb_poliklinik";
+                            $no = $posisi + 1;
+                        }
+                    } else {
+                        $query = "SELECT * FROM `tb_poliklinik` ORDER BY `nama_poli` ASC LIMIT $posisi, $batas";
+                        $queryJml = "SELECT * FROM tb_poliklinik";
+                        $no = $posisi + 1;
+                    };
                     $no = 1;
-                    $sql_poli = mysqli_query($con, "SELECT * FROM `tb_poliklinik` ORDER BY `nama_poli` ASC") or die(mysqli_error($con));
+                    $sql_poli = mysqli_query($con, $query) or die(mysqli_error($con));
                     if (mysqli_num_rows($sql_poli) > 0) {
                         while ($data = mysqli_fetch_array($sql_poli)) { ?>
                             <tr>
@@ -90,10 +110,45 @@
             </table>
         </div>
     </form>
-    <div class="d-grid d-md-flex gap-3 justify-content-md-end">
-        <button class="btn btn-sm btn-outline-warning" id="btnEdit"><i class="fa-regular fa-pen-to-square"></i>&nbsp;Edit</button>
-        <button class="btn btn-sm btn-outline-danger" id="btnDelete"><i class=" fa-regular fa-trash-can"></i>&nbsp;Hapus Data</button>
-    </div>
+    <?php
+    if (isset($_POST['pencarian']) == null) { ?>
+        <div style="float: left;">
+            <?php
+            $jml = mysqli_num_rows(mysqli_query($con, $queryJml));
+            echo "Jumlah Data: <b>$jml</b>";
+            ?>
+        </div>
+        <div style="float: right;">
+            <ul class="pagination pagination-sm" style="margin: 0;">
+                <?php
+                $jml_hal = ceil($jml / $batas);
+                for ($i = 1; $i <= $jml_hal; $i++) {
+                    if ($i != $hal) {
+                        echo "<li class=\"page-item\" ><a class=\"page-link\" href=\"?hal=$i\">$i</a></li>";
+                    } else { ?>
+                        <li class="page-item active">
+                            <span class="page-link"><?= $i; ?></span>
+                        </li>
+                <?php };
+                };
+                ?>
+            </ul>
+        </div>
+    <?php
+
+    } else {
+        echo "<div style=\"float: left;\">";
+        $jml = mysqli_num_rows(mysqli_query($con, $queryJml));
+        echo "Data Hasil Pencarian: <b>$jml</b>";
+        echo "</div>";
+    } ?>
+</div>
+<br>
+<br>
+<div class="d-grid d-md-flex gap-3 justify-content-md-end">
+    <button class="btn btn-sm btn-outline-warning" id="btnEdit"><i class="fa-regular fa-pen-to-square"></i>&nbsp;Edit</button>
+    <button class="btn btn-sm btn-outline-danger" id="btnDelete"><i class=" fa-regular fa-trash-can"></i>&nbsp;Hapus Data</button>
+</div>
 </div>
 <script>
     // function for event onclick in button
