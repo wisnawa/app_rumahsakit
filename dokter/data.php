@@ -85,12 +85,14 @@
                             </tr>
                         <?php }
                     } else { ?>
-                        <td colspan="7">
-                            <div class="alert alert-danger d-flex align-items-center col-5" role="alert">
-                                <i class="fa-solid fa-circle-exclamation"></i>&nbsp;
-                                <div class="text-uppercase fs-6 fw-bold">Data belum di tambahkan!</div>
-                            </div>
-                        </td>
+                        <tr>
+                            <td colspan="7">
+                                <div class="alert alert-danger d-flex align-items-center col-5" role="alert">
+                                    <i class="fa-solid fa-circle-exclamation"></i>&nbsp;
+                                    <div class="text-uppercase fs-6 fw-bold">Data belum di tambahkan!</div>
+                                </div>
+                            </td>
+                        </tr>
                     <?php } ?>
                 </tbody>
             </table>

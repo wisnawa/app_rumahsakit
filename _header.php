@@ -11,10 +11,10 @@ if (!isset($_SESSION['user'])) {
 
 <head>
     <meta charset="UTF-8" />
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" /> -->
     <link rel="stylesheet" href="<?= base_url(); ?>/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?= base_url(); ?>/assets/fontawesome-6.2.1/css/all.min.css">
     <link rel="stylesheet" href="<?= base_url(); ?>/assets/css/style.css" />
+
     <title>Application Web Rumah Sakit</title>
 </head>
 
