@@ -65,24 +65,33 @@
                 <tbody>
                     <?php
                     $no = 1;
-                    $sql_poli = mysqli_query($con, "SELECT * FROM `tb_dokter` ORDER BY `nama_dokter` ASC") or die(mysqli_error($con));
-                    while ($data = mysqli_fetch_array($sql_poli)) { ?>
-                        <tr>
-                            <td><?= $no++; ?></td>
-                            <td><?= $data['nama_dokter']; ?></td>
-                            <td><?= $data['spesialis']; ?></td>
-                            <td><?= $data['alamat']; ?></td>
-                            <td><?= $data['no_telp']; ?></td>
-                            <td>
-                                <div class="form-check">
-                                    <input style="float: none; margin-left: 30%;" name="checked[]" class="form-check-input" type="checkbox" value="<?= $data['id_dokter']; ?>" id="cityCheck">
-                                </div>
-                            </td>
-                            <td style="text-align: center; width: 100px;">
-                                <a href="edit.php?id=<?= $data['id_dokter']; ?>" class="btn btn-sm btn-outline-warning"><i class="fa-regular fa-pen-to-square"></i>&nbsp;Edit</a>
-                            </td>
-                        </tr>
-                    <?php }  ?>
+                    $sql_dokter = mysqli_query($con, "SELECT * FROM `tb_dokter` ORDER BY `nama_dokter` ASC") or die(mysqli_error($con));
+                    if (mysqli_num_rows($sql_dokter) > 0) {
+                        while ($data = mysqli_fetch_array($sql_dokter)) { ?>
+                            <tr>
+                                <td><?= $no++; ?></td>
+                                <td><?= $data['nama_dokter']; ?></td>
+                                <td><?= $data['spesialis']; ?></td>
+                                <td><?= $data['alamat']; ?></td>
+                                <td><?= $data['no_telp']; ?></td>
+                                <td>
+                                    <div class="form-check">
+                                        <input style="float: none; margin-left: 30%;" name="checked[]" class="form-check-input" type="checkbox" value="<?= $data['id_dokter']; ?>" id="cityCheck">
+                                    </div>
+                                </td>
+                                <td style="text-align: center; width: 100px;">
+                                    <a href="edit.php?id=<?= $data['id_dokter']; ?>" class="btn btn-sm btn-outline-warning"><i class="fa-regular fa-pen-to-square"></i>&nbsp;Edit</a>
+                                </td>
+                            </tr>
+                        <?php }
+                    } else { ?>
+                        <td colspan="7">
+                            <div class="alert alert-danger d-flex align-items-center col-5" role="alert">
+                                <i class="fa-solid fa-circle-exclamation"></i>&nbsp;
+                                <div class="text-uppercase fs-6 fw-bold">Data belum di tambahkan!</div>
+                            </div>
+                        </td>
+                    <?php } ?>
                 </tbody>
             </table>
         </div>
