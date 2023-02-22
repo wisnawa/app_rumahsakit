@@ -79,7 +79,7 @@
                                 </div>
                             </td>
                             <td style="text-align: center; width: 100px;">
-                                <a href="edit.php" class="btn btn-sm btn-outline-warning"><i class="fa-regular fa-pen-to-square"></i>&nbsp;Edit</a>
+                                <a href="edit.php?id=<?= $data['id_dokter']; ?>" class="btn btn-sm btn-outline-warning"><i class="fa-regular fa-pen-to-square"></i>&nbsp;Edit</a>
                             </td>
                         </tr>
                     <?php }  ?>
