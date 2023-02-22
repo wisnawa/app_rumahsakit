@@ -26,7 +26,7 @@ include_once('../_header.php');
     <div class="row">
         <div class="col">
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="Kembali ke data obat">
+                <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="Kembali ke data dokter">
                     <a href="data.php" class="btn btn-outline-info"><i class="fa-solid fa-backward"></i>&nbsp;Kembali</a>
                 </span>
             </div>
@@ -49,13 +49,13 @@ include_once('../_header.php');
                 </div>
                 <div class="mb-3">
                     <label for="alamat" class="form-label fw-bold">Alamat Dokter:</label>
-                    <textarea name="alamat" id="alamat" class="form-control" rows="3" required></textarea>
+                    <textarea name="alamat" id="alamat" class="form-control" rows="3" placeholder="Alamat dokter" required></textarea>
                     <div id="nameHelp" class="form-text text-danger">* Harus diisi</div>
                 </div>
                 <div class="mb-3">
                     <label for="no_telp" class="form-label fw-bold">Nomor Telphon:</label>
-                    <input type="number" name="telp" id="no_telp" class="form-control" aria-describedby="nameHelp" required>
-                    <div id="nameHelp" class="form-text text-danger">* Harus diisi</div>
+                    <input type="number" name="telp" id="no_telp" class="form-control" aria-describedby="nameHelp" placeholder="Nomor telp / hp" required>
+                    <div id="nameHelp" class="form-text text-danger">* Harus diisi dengan angka</div>
                 </div>
                 <div class="d-grid justify-content-end">
                     <button type="submit" name="add" class="btn btn-sm btn-outline-success"><i class="fa-regular fa-paper-plane"></i>&nbsp;Kirim Data</button>

@@ -39,12 +39,12 @@
                         <th class="align-middle">Spesialis Dokter</th>
                         <th class="align-middle">Alamat Dokter</th>
                         <th class="align-middle">Nomor Telphon</th>
-                        <th colspan="2">
+                        <th>
                             <!-- <div class="form-check">
                             <input style="float: left; margin-left: 40%" class="form-check-input" type="checkbox" id="select_all">
                             <label class="form-check-label" for="select_all"></label>
                         </div> -->
-                            <div style="float: left; margin-left: 30%">
+                            <div style="float: left; margin-left: 5%">
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" onclick="selectAll()" type="radio" name="radio_check" id="flexRadioDefault1">
                                     <label class="form-check-label" for="flexRadioDefault1">
@@ -59,7 +59,7 @@
                                 </div>
                             </div>
                         </th>
-                        <th colspan="1" class="text-center"><i class="fa-solid fa-gears"></i></th>
+                        <th class="text-center"><i class="fa-solid fa-gears"></i></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -75,7 +75,7 @@
                             <td><?= $data['no_telp']; ?></td>
                             <td>
                                 <div class="form-check">
-                                    <input style="float: left; margin-left: 70%" name="checked[]" class="form-check-input" type="checkbox" value="<?= $data['id_dokter']; ?>" id="cityCheck">
+                                    <input style="float: none; margin-left: 30%;" name="checked[]" class="form-check-input" type="checkbox" value="<?= $data['id_dokter']; ?>" id="cityCheck">
                                 </div>
                             </td>
                             <td style="text-align: center; width: 100px;">
