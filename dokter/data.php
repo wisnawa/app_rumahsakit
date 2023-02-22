@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-lg-12">
             <a href="#menu-toggle" class="btn btn-primary" id="menu-toggle"><i class="fa-solid fa-bars"></i>&nbsp;Toggle Menu</a>
-            <h1>Data Poliklinik</h1>
+            <h1>Data Dokter</h1>
             <p>Selamat Datang <span style="font-weight: bold; text-transform: capitalize;"><?= $_SESSION['user']; ?></span> Pengguna Rekam Medis</p>
         </div>
     </div>
@@ -22,7 +22,7 @@
             <!-- button process start -->
             <div class="d-grid gap-3 d-md-flex justify-content-md-end mb-2">
                 <button id="btnRefresh" class="btn btn-sm btn-outline-warning"><i class="fa-solid fa-arrows-rotate"></i>&nbsp;Refresh</button>
-                <a href="generate.php" class="btn btn-sm btn-outline-success"><i class="fa-solid fa-circle-plus"></i>&nbsp;Tambah Data Poliklinik</a>
+                <a href="add.php" class="btn btn-sm btn-outline-success"><i class="fa-solid fa-circle-plus"></i>&nbsp;Tambah Data Dokter</a>
             </div>
             <!-- button process end -->
         </div>
@@ -35,14 +35,16 @@
                 <thead class="table-primary">
                     <tr>
                         <th class="align-middle">No.</th>
-                        <th class="align-middle">Nama Poliklinik</th>
-                        <th class="align-middle">Area Gedung</th>
+                        <th class="align-middle">Nama Dokter</th>
+                        <th class="align-middle">Spesialis Dokter</th>
+                        <th class="align-middle">Alamat Dokter</th>
+                        <th class="align-middle">Nomor Telphon</th>
                         <th colspan="2">
                             <!-- <div class="form-check">
                             <input style="float: left; margin-left: 40%" class="form-check-input" type="checkbox" id="select_all">
                             <label class="form-check-label" for="select_all"></label>
                         </div> -->
-                            <div style="float: left; margin-left: 50%">
+                            <div style="float: left; margin-left: 30%">
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" onclick="selectAll()" type="radio" name="radio_check" id="flexRadioDefault1">
                                     <label class="form-check-label" for="flexRadioDefault1">
@@ -57,41 +59,76 @@
                                 </div>
                             </div>
                         </th>
+                        <th colspan="1" class="text-center"><i class="fa-solid fa-gears"></i></th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
                     $no = 1;
-                    $sql_poli = mysqli_query($con, "SELECT * FROM `tb_poliklinik` ORDER BY `nama_poli` ASC") or die(mysqli_error($con));
-                    if (mysqli_num_rows($sql_poli) > 0) {
-                        while ($data = mysqli_fetch_array($sql_poli)) { ?>
-                            <tr>
-                                <td><?= $no++; ?></td>
-                                <td><?= $data['nama_poli']; ?></td>
-                                <td><?= $data['gedung']; ?></td>
-                                <td>
-                                    <div class="form-check">
-                                        <input style="float: left; margin-left: 70%" name="checked[]" class="form-check-input" type="checkbox" value="<?= $data['id_poli']; ?>" id="cityCheck">
-                                    </div>
-                                </td>
-                            </tr>
-                        <?php }
-                    } else { ?>
+                    $sql_poli = mysqli_query($con, "SELECT * FROM `tb_dokter` ORDER BY `nama_dokter` ASC") or die(mysqli_error($con));
+                    while ($data = mysqli_fetch_array($sql_poli)) { ?>
                         <tr>
-                            <td colspan="4">
-                                <div class="alert alert-danger d-flex align-items-center" role="alert">
-                                    <i class="fa-solid fa-circle-exclamation"></i>&nbsp;
-                                    <div class="text-uppercase fs-6 fw-bold">Data tidak ditemukan</div>
+                            <td><?= $no++; ?></td>
+                            <td><?= $data['nama_dokter']; ?></td>
+                            <td><?= $data['spesialis']; ?></td>
+                            <td><?= $data['alamat']; ?></td>
+                            <td><?= $data['no_telp']; ?></td>
+                            <td>
+                                <div class="form-check">
+                                    <input style="float: left; margin-left: 70%" name="checked[]" class="form-check-input" type="checkbox" value="<?= $data['id_dokter']; ?>" id="cityCheck">
                                 </div>
                             </td>
+                            <td style="text-align: center; width: 100px;">
+                                <a href="edit.php" class="btn btn-sm btn-outline-warning"><i class="fa-regular fa-pen-to-square"></i>&nbsp;Edit</a>
+                            </td>
                         </tr>
-                    <?php } ?>
+                    <?php }  ?>
                 </tbody>
             </table>
         </div>
     </form>
+    <div class="d-grid d-md-flex gap-3 justify-content-md-end">
+        <!-- <button class="btn btn-sm btn-outline-warning" id="btnEdit"><i class="fa-regular fa-pen-to-square"></i>&nbsp;Edit</button> -->
+        <button class="btn btn-sm btn-outline-danger" id="btnDelete"><i class=" fa-regular fa-trash-can"></i>&nbsp;Hapus Data</button>
+    </div>
 </div>
 <script>
+    // function for event onclick in button
+    function selectAll() {
+        let poliCheck = document.getElementsByName("checked[]");
+        let poliCheckLen = poliCheck.length;
+        for (var x = 0; x < poliCheckLen; x++) {
+            poliCheck[x].checked = true;
+        }
+    }
+
+    function deselectAll() {
+        let poliCheck = document.getElementsByName("checked[]");
+        let poliCheckLen = poliCheck.length;
+        for (var x = 0; x < poliCheckLen; x++) {
+            poliCheck[x].checked = false;
+        }
+    }
+    // function for buttom edit
+    // var btnEdit = document.getElementById("btnEdit");
+
+    // function prosesEdit() {
+    //     document.proses.action = "edit.php";
+    //     document.proses.submit();
+    // }
+    // btnEdit.addEventListener("click", prosesEdit)
+
+    // function for button delete
+    var btnDelete = document.getElementById("btnDelete");
+
+    function prosesDel() {
+        var conf = confirm("Apakah hapus data?");
+        if (conf) {
+            document.proses.action = "del.php";
+            document.proses.submit();
+        }
+    }
+    btnDelete.addEventListener("click", prosesDel);
     // function button refresh for event click
     var btnRefresh = document.getElementById("btnRefresh");
 

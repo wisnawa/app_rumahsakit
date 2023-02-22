@@ -22,7 +22,7 @@
         <div class="col-6">
             <!-- button process start -->
             <div class="d-grid gap-3 d-md-flex justify-content-md-end mb-2">
-                <a href="data.php" class="btn btn-sm btn-outline-warning" type="reset"><i class="fa-solid fa-arrows-rotate"></i>&nbsp;Refresh Data</a>
+                <button id="btnRefresh" class="btn btn-sm btn-outline-warning"><i class="fa-solid fa-arrows-rotate"></i>&nbsp;Refresh</button>
                 <a href="add.php" class="btn btn-sm btn-outline-success"><i class="fa-solid fa-circle-plus"></i>&nbsp;Tambah Data Obat</a>
             </div>
             <!-- button process end -->
@@ -129,4 +129,13 @@
         echo "</div>";
     } ?>
 </div>
+<script>
+    // function button refresh for event click
+    var btnRefresh = document.getElementById("btnRefresh");
+
+    function jalankan() {
+        window.location = "data.php";
+    }
+    btnRefresh.addEventListener("click", jalankan);
+</script>
 <?php include_once('../_footer.php') ?>
