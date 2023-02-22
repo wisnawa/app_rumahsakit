@@ -26,7 +26,7 @@ include_once('../_header.php');
     <div class="row">
         <div class="col">
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="Kembali ke data dokter">
+                <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="Kembali ke data pasien">
                     <a href="data.php" class="btn btn-outline-info"><i class="fa-solid fa-backward"></i>&nbsp;Kembali</a>
                 </span>
             </div>
@@ -48,9 +48,9 @@ include_once('../_header.php');
                     <div id="nameHelp" class="form-text text-danger">* Harus diisi</div>
                 </div>
                 <div class="mb-3">
-                    <label for="spes_dokter" class="form-label fw-bold">Jenis Kelamin:</label>
+                    <label for="flexRadioDefault1" class="form-label fw-bold">Jenis Kelamin:</label><br>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="jk" value="L" id="flexRadioDefault1">
+                        <input class="form-check-input" type="radio" name="jk" value="L" id="flexRadioDefault1" required>
                         <label class="form-check-label" for="flexRadioDefault1">
                             Laki - laki
                         </label>
@@ -72,7 +72,8 @@ include_once('../_header.php');
                     <input type="number" name="telp" id="no_telp" class="form-control" aria-describedby="nameHelp" placeholder="Nomor telp / hp" required>
                     <div id="nameHelp" class="form-text text-danger">* Harus diisi dengan angka</div>
                 </div>
-                <div class="d-grid justify-content-end">
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button type="reset" class="btn btn-sm btn-outline-warning"><i class="fa-solid fa-arrows-rotate"></i>&nbsp;Reset</button>
                     <button type="submit" name="add" class="btn btn-sm btn-outline-success"><i class="fa-regular fa-paper-plane"></i>&nbsp;Kirim Data</button>
                 </div>
             </form>

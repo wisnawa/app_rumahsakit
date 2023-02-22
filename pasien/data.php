@@ -66,6 +66,7 @@
     //     }
     // }
     // btnDelete.addEventListener("click", prosesDel);
+
     // function button refresh for event click
     var btnRefresh = document.getElementById("btnRefresh");
 
