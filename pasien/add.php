@@ -39,7 +39,7 @@ include_once('../_header.php');
             <form action="proses.php" method="post">
                 <div class="mb-3">
                     <label for="identitas" class="form-label fw-bold">Nomor Identitas KTP:</label>
-                    <input type="text" name="identitas" pattern="[1-9]{16}" class="form-control" id="identitas" aria-describedby="nameHelp" placeholder="Isi nomor identitas" required autofocus>
+                    <input type="text" name="identitas" pattern="[0-9]{16}" class="form-control" id="identitas" aria-describedby="nameHelp" placeholder="Isi nomor identitas" required autofocus>
                     <div id="nameHelp" class="form-text text-danger">* Harus diisi nomor KTP 16 angka</div>
                 </div>
                 <div class="mb-3">

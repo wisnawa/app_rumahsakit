@@ -97,7 +97,12 @@
                                 <td><?= $no++; ?></td>
                                 <td><?= $data['nomor_identitas']; ?></td>
                                 <td><?= $data['nama_pasien']; ?></td>
-                                <td><?= $data['jenis_kelamin']; ?></td>
+                                <?php if ($data['jenis_kelamin'] == "L") {
+                                    $jenis = "Laki-laki";
+                                } elseif ($data['jenis_kelamin'] == "P") {
+                                    $jenis = "Perempuan";
+                                } ?>
+                                <td><?= $jenis; ?></td>
                                 <td><?= $data['alamat']; ?></td>
                                 <td><?= $data['no_telp']; ?></td>
                                 <td>
